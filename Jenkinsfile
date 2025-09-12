@@ -20,7 +20,7 @@ node {
     }
 
     stage('Archive Artifact') {
-        echo "Archiving package.zip..."
+        echo "Archiving package.zip...Test"
         archiveArtifacts artifacts: 'dist/package.zip', fingerprint: true
     }
 }

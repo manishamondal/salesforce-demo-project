@@ -10,7 +10,6 @@
         <mkdir dir="build"/>
         <copy todir="build">
             <fileset dir="src"/>
-            <include name="**/*"/>
         </copy>
     </target>
 

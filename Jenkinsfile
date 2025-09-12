@@ -4,7 +4,7 @@ node {
     stage('Checkout') {
         checkout([$class: 'GitSCM',
             branches: [[name: '*/main']],
-            userRemoteConfigs: [[url: 'https://github.com/your-org/salesforce-jenkins-ant.git']]
+            userRemoteConfigs: [[url: 'https://github.com/manishamondal/salesforce-demo-project.git']]
         ])
     }
 

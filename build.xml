@@ -1,0 +1,21 @@
+<project name="SalesforceBuild" default="package" basedir=".">
+    <taskdef resource="com/salesforce/antlib.xml" classpath="lib/ant-salesforce.jar"/>
+
+    <target name="clean">
+        <delete dir="build"/>
+        <delete dir="dist"/>
+    </target>
+
+    <target name="build">
+        <mkdir dir="build"/>
+        <copy todir="build">
+            <fileset dir="src"/>
+            <include name="**/*"/>
+        </copy>
+    </target>
+
+    <target name="package" depends="clean,build">
+        <mkdir dir="dist"/>
+        <zip destfile="dist/package.zip" basedir="build"/>
+    </target>
+</project>

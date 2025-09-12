@@ -1,5 +1,4 @@
 node {
-    def ANT_HOME = tool name: 'ANT_HOME', type: 'hudson.tasks.Ant$AntInstallation'
 
     stage('Checkout') {
         checkout([$class: 'GitSCM',
@@ -10,11 +9,13 @@ node {
 
     stage('Build & Package') {
         echo "Running Ant build & package..."
-        withEnv(["PATH+ANT=${ANT_HOME}/bin"]) {
-            sh """
-                ant -version
-                ant package
-            """
+        def antHome = tool name: 'Ant', type: 'hudson.tasks.Ant$AntInstallation'
+        withEnv([
+            "ANT_HOME=${antHome}",
+            "PATH+ANT=${antHome}\\bin"
+        ]) {
+            bat 'ant -version'
+            bat 'ant -f build.xml package '
         }
     }
 

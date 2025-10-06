@@ -50,7 +50,7 @@ node {
         ]) {
                 withEnv(['NODE_OPTIONS=--max-old-space-size=4096 --trace-warnings']) {
    
-    bat "\"${HOME}\\AppData\\Roaming\\npm\\sfdx\" force:mdapi:deploy -d src -u ${SFDC_USERNAME} --wait 10 --verbose"
+    bat '"C:/Users/manisha.mondal/AppData/Roaming/npm/sfdx" force:mdapi:deploy -d src --targetusername %SFDC_USERNAME% --wait 10 --verbose'
 }
 
             }

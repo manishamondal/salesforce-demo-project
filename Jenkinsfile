@@ -43,17 +43,12 @@ node {
         }
     }
 
-    stage('Deploy to Salesforce (MDAPI)') {
-        echo "Deploying via MDAPI..."
-        withCredentials([
-            string(credentialsId: 'sfdx_username', variable: 'SFDC_USERNAME')
-        ]) {
-                withEnv(['NODE_OPTIONS=--max-old-space-size=4096 --trace-warnings']) {
-   
-    bat '"C:/Users/manisha.mondal/AppData/Roaming/npm/sfdx" force:mdapi:deploy -d src --targetusername %SFDC_USERNAME% --wait 10 --verbose'
+stage('Deploy to Salesforce') {
+      steps {
+        withCredentials([string(credentialsId: 'sfdx_username', variable: 'SFDC_USERNAME')]) {
+          powershell 'sf project deploy start --manifest build.xml --target-org $env:SFDC_USERNAME'
+        }
+      }
+}
 }
 
-            }
-        
-    }
-}
